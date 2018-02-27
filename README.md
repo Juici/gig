@@ -1,5 +1,5 @@
 # gig
-[![Build Status](https://travis-ci.org/juici/gig.svg?branch=master)](https://travis-ci.org/juici/gig)
+[![Build Status](https://api.travis-ci.org/Juici/gig.svg?branch=master)](https://travis-ci.org/Juici/gig)
 
 A basic .gitignore file generator in rust using the [gitignore.io](https://gitignore.io) api.
 
