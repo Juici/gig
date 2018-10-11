@@ -11,10 +11,9 @@ const PAD: &str = "  ";
 fn main() {
     let args = env::args().collect::<Vec<_>>();
 
-    let _cmd = &args[0];
     let types = &args[1..];
 
-    if types.len() == 0 || &types[0] == "list" {
+    if types.is_empty() || &types[0] == "list" {
         println!("Available gitignore types:");
         get_types();
         return;
@@ -39,8 +38,7 @@ fn get_gitignore(types: &[String]) {
 
 /// Prints a list of the available gitignore types.
 fn get_types() {
-    let mut url = API.to_owned();
-    url.push_str(LIST);
+    let url = format!("{}{}", API, LIST);
 
     let result = reqwest::get(&url);
     if result.is_err() {
@@ -48,8 +46,7 @@ fn get_types() {
         return;
     }
 
-    let mut response = result.unwrap();
-    let s = response.text().unwrap();
+    let s = result.unwrap().text().unwrap();
 
     let list: Vec<&str> = s.split(&[',', '\n'][..]).collect();
 
